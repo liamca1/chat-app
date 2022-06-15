@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, TextInput, View, Pressable, TouchableOpacity, ImageBackground } from 'react-native';
-import BackgroundImage from 'chat-app/assets/img/BackgroundImage.png';
+import BackgroundImage from 'chat-app/assets/img/chat-app-bg.jpeg';
 
 {/* Background colours for the chatscreen (Constants) */}
 const colors = {
