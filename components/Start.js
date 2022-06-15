@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, TextInput, View, Pressable, TouchableOpacity, ImageBackground } from 'react-native';
 import BackgroundImage from 'chat-app/assets/img/BackgroundImage.png';
 
-// Create constant that holds background colors for Chat Screen
+{/* Background colours for the chatscreen (Constants) */}
 const colors = {
   black: "#090C08",
   purple: "#474056",
@@ -55,7 +55,7 @@ export default function Start(props) {
             />
           </View>
 
-          {/* Open chatroom, passing user name and background color as props */}
+          {/* Opens the 'space for conversations' i.e. Chat screen. Passes the colour choice and name to the Chat screen */}
           <Pressable
             onPress={() => props.navigation.navigate('Chat', { name: name, color: color })}
             style={({ pressed }) => [
@@ -74,6 +74,8 @@ export default function Start(props) {
     </View>
   )
 }
+
+{/* Styles */} 
 
 const styles = StyleSheet.create({
   container: {
