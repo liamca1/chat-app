@@ -9,7 +9,7 @@ export default class Chat extends React.Component {
       this.state = {
         messages: [],
       };
-    }
+    } 
 
     //prop name
   componentDidMount() {
