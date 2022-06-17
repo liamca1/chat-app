@@ -21,7 +21,7 @@ export default function Start(props) {
       style={styles.image}
       >
         <View style={styles.titleBox}>
-          <Text style={styles.title}>Chat App</Text>
+          <Text style={styles.title}>Conversations</Text>
         </View>
         {/* Input box to set user name passed to chat screen */}
         <View style={styles.box1}>
