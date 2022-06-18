@@ -28,13 +28,11 @@ class Chat extends Component {
         name: "",
         avatar: "",
       },
-      isConnected: false,
     };
 
     if (!firebase.apps.length) {
       firebase.initializeApp(firebaseConfig);
     }
-
     // Create a reference to the firestore messages collection
     this.referenceChatMessages = firebase.firestore().collection("messages");
     this.referenceMessagesUser= null;
@@ -135,6 +133,30 @@ async deleteMessages() {
       this.saveMessages();
     });
   }
+
+  onCollectionUpdate = (querySnapshot) => {
+    const messages = [];
+    // go through each document
+    querySnapshot.forEach((doc) => {
+      // get the QueryDocumentSnapshot's data
+      var data = doc.data();
+      messages.push({
+        _id: data._id,
+        text: data.text,
+        createdAt: data.createdAt.toDate(),
+        user: {
+          _id: data.user._id,
+          name: data.user.name,
+          avatar: data.user.avatar
+        },
+        image: data.image || null,
+        location: data.location || null,
+      });
+    });
+    this.setState({
+      messages: messages,
+    });
+  };
 
 // Disable sending messages when user is offline
 renderInputToolbar(props) {
