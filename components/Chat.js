@@ -120,7 +120,7 @@ export default class Chat extends React.Component {
     this.setState((previousState) => ({
       messages: GiftedChat.append(previousState.messages, messages),
     }), () => {
-      this.addMessage();
+      this.addMessages();
       this.saveMessages();
     });
   }
