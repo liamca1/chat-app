@@ -11,6 +11,8 @@ import firestore from 'firebase';
 import "firebase/firestore";
 // import firestore from 'firebase';
 
+import CustomActions from './CustomActions';
+
 // Chat component
 export default class Chat extends React.Component {
 
@@ -128,7 +130,7 @@ export default class Chat extends React.Component {
   // Component
   componentDidMount() {
     // Display the users name in title
-    const name = this.props.route.params.name;
+    const { name } = this.props.route.params;
     this.props.navigation.setOptions({ title: name });
     // Takes a snapshot of the Firestone Database messages collection
     this.referenceChatMessages = firebase.firestore().collection('messages');
@@ -185,7 +187,6 @@ async getMessages() {
 // Close connections when user is connected
 componentWillUnmount() {
   if (this.state.isConnected) {
-    this.authUnsubscribe();
     this.authUnsubscribe();
   }
 }
@@ -244,12 +245,12 @@ renderCustomView(props) {
 }
 
   render() {
-    let bgColor = this.props.route.params;
+    let bgColor = this.props.route.params.color;
     return (
       <View style={{ flex: 1, backgroundColor: bgColor }}>
         <GiftedChat
         renderCustomView={this.renderCustomView}
-        renderCustomActions={this.renderCustomActions}
+        renderActions={this.renderCustomActions}
         renderBubble={this.renderBubble.bind(this)}
         renderUsernameOnMessage={true}
         renderInputToolbar={this.renderInputToolbar.bind(this)}
@@ -257,7 +258,7 @@ renderCustomView(props) {
                     onSend={messages => this.onSend(messages)}
                     user={{
                         _id: this.state.user._id,
-                        name: this.state.name,
+                        name: this.state.user.name,
                         avatar: this.state.user.avatar
                     }}
       />
